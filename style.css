@@ -55,7 +55,6 @@ footer {
   color: #aaa;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   nav a {
     display: block;
