@@ -5,44 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KapturedOfficial | Kaustubh Gera</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>KapturedOfficial</h1>
     <p>by Kaustubh Gera</p>
     <nav>
       <a href="#about">About</a>
+      <a href="#projects">Projects</a>
       <a href="#gallery">Gallery</a>
       <a href="#instagram">Instagram</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="about">
+  <section id="about" data-aos="fade-up">
     <h2>About Me</h2>
     <p>I'm a BTech CSE student who loves photography, especially nature and street captures. Welcome to my world.</p>
   </section>
 
-  <section id="gallery">
+  <section id="projects" data-aos="fade-up">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Portfolio Website</h3>
+      <p>This very site — built with HTML, CSS, and GitHub Pages!</p>
+    </div>
+    <div class="project">
+      <h3>Password Strength Checker</h3>
+      <p>A Python tool that uses regex and entropy checks.</p>
+    </div>
+  </section>
+
+  <section id="gallery" data-aos="zoom-in">
     <h2>Photo Gallery</h2>
     <div class="grid">
       <img src="images/photo1.jpg" alt="Photo 1" />
     </div>
   </section>
 
-  <section id="instagram">
-    <h2>Instagram Feed</h2>
-    <!-- LightWidget WIDGET -->
-    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-    <iframe src="//lightwidget.com/widgets/9659bc6a51a959fca581169296754c5c.html" 
-            scrolling="no" 
-            allowtransparency="true" 
-            class="lightwidget-widget" 
-            style="width:100%;border:0;overflow:hidden;">
-    </iframe>
-  </section>
-
-  <section id="contact">
+  
+  <section id="contact" data-aos="fade-up">
     <h2>Contact Me</h2>
     <p>Email: <a href="mailto:kaustubh@example.com">kaustubh@example.com</a></p>
     <p>
@@ -53,8 +56,11 @@
     </p>
   </section>
 
-  <footer>
+  <footer data-aos="fade-in">
     <p>© 2025 KapturedOfficial</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 </body>
 </html>
