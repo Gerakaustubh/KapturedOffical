@@ -1,66 +1,134 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
+/* Base Styles */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f6f6f6;
-  color: #222;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header & Navigation */
 header {
-  text-align: center;
   background-color: #111;
   color: #fff;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #bbb;
+}
+
+nav {
+  margin-top: 1rem;
 }
 
 nav a {
   margin: 0 1rem;
   color: #ddd;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
+nav a:hover {
+  color: #fff;
+}
+
+/* Section Layout */
 section {
-  padding: 2rem;
-  max-width: 800px;
+  padding: 3rem 2rem;
+  max-width: 1000px;
   margin: auto;
+  background-color: #fff;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+/* Projects */
+.project {
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.project:hover {
+  transform: translateY(-3px);
+}
+
+/* Gallery Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
 }
 
 .grid img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-.grid img:hover {
-  transform: scale(1.05);
-}
-
-.project {
-  background-color: #eee;
-  padding: 1rem;
-  margin-bottom: 1rem;
   border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Contact */
+#contact a {
+  color: #222;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
 footer {
-  text-align: center;
-  padding: 1rem;
   background-color: #111;
   color: #aaa;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 2rem;
 }
 
-@media (max-width: 600px) {
-  nav a {
-    display: block;
-    margin: 1rem 0;
-  }
+/* Mobile Tweaks */
+@media (max-width: 768px) {
   header h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
