@@ -1,312 +1,267 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KapturedOfficial</title>
+/*============================
+  Root Variables & Base Reset
+============================*/
+:root {
+  --bg: #f6f6f6;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --accent: #ffb3c6;
+  --text: #1a1a1a;
+  --subtle-text: #555;
+  --footer-bg: #0d0d0d;
+  --footer-text: #ccc;
+  --radius: 20px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease-in-out;
+}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- AOS (Animate On Scroll) CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+body {
+  font-family: 'Inter', sans-serif;
+  background: url('https://www.transparenttextures.com/patterns/purty-wood.png'), linear-gradient(to right, #fef6f9, #f0faff);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  transition: var(--transition);
+}
 
-  <!-- Font Awesome for Icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+/*============================
+  CSS-Only Preloader
+============================*/
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease 2s forwards;
+}
 
-  <style>
-    :root {
-      --bg: #f6f6f6;
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --accent: #ffb3c6;
-      --text: #1a1a1a;
-      --subtle-text: #555;
-      --footer-bg: #0d0d0d;
-      --footer-text: #ccc;
-      --radius: 20px;
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s ease-in-out;
-    }
+.loader-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  animation: pulse 1.2s infinite ease-in-out;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/purty-wood.png'), linear-gradient(to right, #fef6f9, #f0faff);
-      background-attachment: fixed;
-      background-size: cover;
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      scroll-behavior: smooth;
-      transition: var(--transition);
-    }
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
+/*============================
+  Header & Navigation
+============================*/
+header {
+  padding: 2rem 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  text-align: center;
+}
 
-    .preloader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #000;
+}
 
-    .loader-text {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      animation: pulse 1.2s infinite ease-in-out;
-    }
+header p {
+  font-size: 1.1rem;
+  color: var(--subtle-text);
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-    }
+nav {
+  margin-top: 1rem;
+}
 
-    header {
-      padding: 2rem 1rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--glass-border);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      text-align: center;
-    }
+nav a {
+  margin: 0 1rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: var(--transition);
+}
 
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #000;
-    }
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease-in-out;
+}
 
-    header p {
-      font-size: 1.1rem;
-      color: var(--subtle-text);
-    }
+nav a:hover {
+  color: var(--accent);
+}
 
-    nav {
-      margin-top: 1rem;
-    }
+nav a:hover::after {
+  width: 100%;
+}
 
-    nav a {
-      margin: 0 1rem;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      position: relative;
-      transition: var(--transition);
-    }
+/*============================
+  Main & Section Styles
+============================*/
+main {
+  flex: 1;
+  width: 100%;
+}
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: var(--accent);
-      transition: width 0.3s ease-in-out;
-    }
+section {
+  padding: 3rem 2rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
 
-    nav a:hover {
-      color: var(--accent);
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
 
-    nav a:hover::after {
-      width: 100%;
-    }
+.grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  transition: var(--transition);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
 
-    main {
-      flex: 1;
-      width: 100%;
-    }
+.grid img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
 
-    section {
-      padding: 3rem 2rem;
-      max-width: 1100px;
-      margin: 2rem auto;
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: var(--radius);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
+.project {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+.project:hover {
+  transform: translateY(-4px);
+}
 
-    .grid img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      transition: var(--transition);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
+/*============================
+  Footer & Social Icons
+============================*/
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 1.8rem 1rem;
+  font-size: 0.95rem;
+  margin-top: auto;
+}
 
-    .grid img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    }
+.social-icons {
+  margin-top: 1rem;
+}
 
-    .project {
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 2rem;
-      border-left: 5px solid var(--accent);
-      border-radius: var(--radius);
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
+.social-icons a {
+  margin: 0 0.5rem;
+  color: var(--footer-text);
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
 
-    .project:hover {
-      transform: translateY(-4px);
-    }
+.social-icons a:hover {
+  color: var(--accent);
+}
 
-    footer {
-      background-color: var(--footer-bg);
-      color: var(--footer-text);
-      text-align: center;
-      padding: 1.8rem 1rem;
-      font-size: 0.95rem;
-      margin-top: auto;
-    }
+/*============================
+  Dark Mode Toggle
+============================*/
+.dark-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
 
-    .social-icons {
-      margin-top: 1rem;
-    }
+body.dark {
+  --bg: #121212;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text: #f1f1f1;
+  --subtle-text: #aaa;
+  --footer-bg: #000;
+  --footer-text: #888;
+  background: #1a1a1a;
+}
 
-    .social-icons a {
-      margin: 0 0.5rem;
-      color: var(--footer-text);
-      font-size: 1.2rem;
-      transition: var(--transition);
-    }
+/*============================
+  Mobile Responsive
+============================*/
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
 
-    .social-icons a:hover {
-      color: var(--accent);
-    }
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-    .dark-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.8rem 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    body.dark {
-      --bg: #121212;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text: #f1f1f1;
-      --subtle-text: #aaa;
-      --footer-bg: #000;
-      --footer-text: #888;
-      background: #1a1a1a;
-    }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="preloader" id="preloader">
-    <div class="loader-text">KapturedOfficial</div>
-  </div>
-
-  <header data-aos="fade-down">
-    <h1>KapturedOfficial</h1>
-    <p>Visual stories from lens to life</p>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Projects</a>
-      <a href="#">Gallery</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section data-aos="fade-up">
-      <div class="project">
-        <h2>Latest Project</h2>
-        <p>A recent series documenting life through broken windows and fading colors.</p>
-      </div>
-      <div class="grid">
-        <img src="https://source.unsplash.com/random/400x300/?city" alt="Sample Image" data-aos="zoom-in">
-        <img src="https://source.unsplash.com/random/400x300/?street" alt="Sample Image" data-aos="zoom-in">
-        <img src="https://source.unsplash.com/random/400x300/?architecture" alt="Sample Image" data-aos="zoom-in">
-      </div>
-    </section>
-  </main>
-
-  <footer data-aos="fade-up">
-    <p>&copy; 2025 KapturedOfficial. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-    </div>
-  </footer>
-
-  <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
-
-  <!-- AOS.js Script -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
-
-    window.addEventListener('load', () => {
-      const preloader = document.getElementById('preloader');
-      setTimeout(() => {
-        preloader.classList.add('hidden');
-      }, 800); // adjust timing if needed
-    });
-  </script>
-</body>
-</html>
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
